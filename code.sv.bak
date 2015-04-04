@@ -1,0 +1,408 @@
+module code (clk, reset, dot, dash, display_1, display_2);
+	input clk, reset, dot, dash;
+	output [0:6] display_1;
+	output [0:6] display_2;
+	reg [0:6] display_1;
+	reg [0:6] display_2;
+	wire [5:0]ps;
+	reg [5:0]ns;
+	
+	parameter blank = 6'b000000, A = 6'b000001, B = 6'b000010, C = 6'b000011, D = 6'b000100, E = 6'b000101, F = 6'b000110, 
+				 G = 6'b000111, H = 6'b001000, I = 6'b001001, J = 6'b001010, K = 6'b001011, L = 6'b001100, M = 6'b001101, 
+				 N = 6'b001110, O = 6'b001111, P = 6'b010000, Q = 6'b010001, R = 6'b010010, S = 6'b010011, T = 6'b010100, 
+				 U = 6'b010101, V = 6'b010110, W = 6'b010111, X = 6'b011000, Y = 6'b011001, Z = 6'b011010, zero = 6'b011011, 
+				 one = 6'b011100, two = 6'b011101, three = 6'b011110, four = 6'b011111, five = 6'b100000, six = 6'b100001,
+				 seven = 6'b100010, eight = 6'b100011, nine = 6'b100100, U_umlaut = 6'b100101, O_umlaut = 6'b100110, CH = 6'b100111;
+	
+	always @(*)
+		case (ps)
+			blank: if (dot == 1 & dash == 0) 
+						ns = E;
+					 else if (dot == 0 & dash == 1) 
+						ns = T;
+					 else 
+						ns = blank;
+			A: if (dot == 1 & dash == 0) 
+					ns = R;
+				else if (dot == 0 & dash == 1) 
+					ns = W;
+				else 
+					ns = A;
+			B: if (dot ==0 & dash == 0) 
+					ns = six;
+				else if (dot ==1 & dash == 0) 
+					ns = B;
+				else 
+					ns = blank;
+			C: if (dot ==0 & dash == 0) 
+					ns = C;
+				else 
+					ns = blank; 
+			D: if (dot == 1 & dash == 0) 
+					ns = B;
+				else if (dot == 0 & dash == 1) 
+					ns = X;
+				else 
+					ns = D;
+			E: if (dot == 1 & dash == 0) 
+					ns = I;
+				else if (dot == 0 & dash == 1) 
+					ns = A;
+				else 
+					ns = E;
+			F: if (dot ==0 & dash == 0) 
+					ns = F;
+				else 
+					ns = blank;
+			G: if (dot == 1 & dash == 0) 
+					ns = Z;
+				else if (dot == 0 & dash == 1) 
+					ns = Q;
+				else 
+					ns = G;
+			H: if (dot ==0 & dash == 1) 
+					ns = four;
+				else if (dot ==1 & dash == 0) 
+					ns = five;
+				else 
+					ns = H;
+			I: if (dot == 1 & dash == 0) 
+					ns = S;
+				else if (dot == 0 & dash == 1) 
+					ns = U;
+				else 
+					ns = I;
+			J: if (dot == 0 & dash == 1) 
+					ns = one;
+				else if (dot == 0 & dash == 0) 
+					ns = J;
+				else 
+					ns = blank;
+			K: if (dot == 1 & dash == 0) 
+					ns = C;
+				else if (dot == 0 & dash == 1) 
+					ns = Y;
+				else 
+					ns = K;	
+			L: if (dot ==0 & dash == 0) 
+					ns = L;
+				else 
+					ns = blank;
+			M: if (dot == 1 & dash == 0) 
+					ns = G;
+				else if (dot == 0 & dash == 1) 
+					ns = O;
+				else 
+					ns = M;
+			N: if (dot == 1 & dash == 0) 
+					ns = D;
+				else if (dot == 0 & dash == 1) 
+					ns = K;
+				else 
+					ns = N;
+			O: if (dot ==0 & dash == 1) 
+					ns = CH;
+				else if(dot ==1 & dash == 0) 
+					ns = O_umlaut;
+				else if(dot ==0 & dash == 0) 
+					ns = O;
+				else 
+					ns = blank;
+			P: if (dot ==0 & dash == 0) 
+					ns = P;
+				else 
+					ns = blank;
+			Q: if (dot ==0 & dash == 0) 
+					ns = Q;
+				else 
+					ns = blank;	
+			R: if (dot == 1 & dash == 0) 
+					ns = L;
+				else if (dot == 0 & dash == 0) 
+					ns = R;
+				else 
+					ns = blank;
+			S: if (dot == 1 & dash == 0) 
+					ns = H;
+				else if (dot == 0 & dash == 1) 
+					ns = V;
+				else 
+					ns = S;
+			T: if (dot == 1 & dash == 0) 
+					ns = N;
+				else if (dot == 0 & dash == 1) 
+					ns = M;
+				else 
+					ns = T;
+			U: if (dot == 1 & dash == 0) 
+					ns = F;
+				else if (dot == 0 & dash == 1) 
+					ns = U_umlaut;
+				else if (dot == 0 & dash == 0) 
+					ns = U;
+				else 
+					ns = blank;
+			V: if (dot ==0 & dash == 1) 
+					ns = three;
+				else if (dot ==0 & dash == 0) 
+					ns = V;
+				else 
+					ns = blank;
+			W: if (dot == 1 & dash == 0) 
+					ns = P;
+				else if (dot == 0 & dash == 1) 
+					ns = J;
+				else 
+					ns = W;
+			X: if (dot == 0 & dash == 0) 
+					ns = X;
+				else 
+					ns = blank;
+			Y: if (dot == 0 & dash == 0) 
+					ns = Y;
+				else 
+				   ns = blank;	
+			Z: if (dot == 0 & dash == 0) 
+					ns = Z;
+				else if (dot == 1 & dash == 0) 
+					ns = seven;
+				else 
+					ns = blank;
+			zero: if (dot ==0 & dash == 0) 
+						ns = zero;
+					else 
+						ns = blank;
+			one: if (dot ==0 & dash == 0) 
+					  ns = one;
+				  else 
+					  ns = blank;
+			two: if (dot ==0 & dash == 0) 
+					  ns = two;
+				  else 
+					  ns = blank;
+			three: if (dot ==0 & dash == 0) 
+						 ns = three;
+					 else 
+						 ns = blank;
+			four: if (dot == 0 & dash == 0) 
+						ns = four;
+					else 
+						ns = blank;
+			five: if (dot == 0 & dash == 0) 
+						ns = five;
+					else 
+						ns = blank;
+			six: if (dot == 0 & dash == 0) 
+						ns = six;
+				  else 
+						ns = blank;
+			seven: if (dot == 0 & dash == 0) 
+						 ns = seven;
+					 else 
+						 ns = blank;
+			eight: if (dot ==0 & dash == 0)
+						 ns = eight;
+					 else 
+						 ns = blank;
+			nine:  if (dot ==0 & dash == 0) 
+						 ns = nine;
+					 else 
+						 ns = blank;
+			U_umlaut: if (dot ==0 & dash == 1) 
+							 ns = two;
+						 else if (dot ==0 & dash == 0) 
+						    ns = U_umlaut;
+						 else 
+							 ns = blank;
+			O_umlaut: if (dot == 0 & dash == 0) 
+						    ns = O_umlaut;
+						 else if (dot == 1 & dash == 0) 
+						    ns = eight;
+						 else 
+							 ns = blank;
+			CH: if (dot ==0 & dash == 1) 
+					 ns = zero;
+				 else if (dot == 1 & dash == 0) 
+					 ns = nine;
+				 else if (dot ==0 & dash == 0) 
+					 ns = CH;
+				 else 
+					 ns = blank;
+			default ns = 6'bxxxxxx;
+		endcase
+	
+	always @(*)
+		case (ps)
+			blank: 
+				begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0000000); 
+				end
+			A: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1110111); 
+				end
+			B: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0011111); 
+				end
+			C: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0001101); 
+				end
+			D: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0111101); 
+				end
+			E: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1001111); 
+				end
+			F: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1000111); 
+				end
+			G: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1011110); 
+				end
+			H: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0110111); 
+				end
+			I: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0000110); 
+				end
+			J: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0111000); 
+				end
+			K: begin 
+					display_1 = ~(7'b0110000); 
+					display_2 = ~(7'b0001101); 
+				end 
+			L: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0001110); 
+				end 
+			M: begin 
+					display_1 = ~(7'b0010101); 
+					display_2 = ~(7'b0010101); 
+				end 
+			N: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0010101); 
+				end 
+			O: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1111110); 
+				end 
+			P: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1100111); 
+				end 
+			Q: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1110011); 
+				end 
+			R: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0000101); 
+				end 
+			S: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1011011); 
+				end 
+			T: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0001111); 
+				end 
+			U: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b0111110); 
+				end 
+			V: begin 
+					display_1 = ~(7'b0010010); 
+					display_2 = ~(7'b0100100); 
+				end 
+			W: begin 
+					display_1 = ~(7'b0011100); 
+					display_2 = ~(7'b0011100); 
+				end 
+			X: begin 
+					display_1 = ~(7'b1111000); 
+					display_2 = ~(7'b1001110); 
+				end 
+			Y: begin 
+					display_1 = ~(7'b0010011); 
+					display_2 = ~(7'b0100101); 
+				end 
+			Z: begin 
+					display_1 = ~(7'b0000000); 
+					display_2 = ~(7'b1101101); 
+				end
+			zero: begin 
+						display_1 = ~(7'b1111110); 
+						display_2 = ~(7'b1111110); 
+					end
+			one: begin 
+				     display_1 = ~(7'b1111110); 
+					  display_2 = ~(7'b0110000); 
+				  end
+			two: begin 
+					  display_1 = ~(7'b1111110); 
+					  display_2 = ~(7'b1101101); 
+				  end
+			three: begin 
+						 display_1 = ~(7'b1111110); 
+						 display_2 = ~(7'b1111001); 
+					 end
+			four: begin 
+						display_1 = ~(7'b1111110); 
+						display_2 = ~(7'b0110011); 
+					end
+			five: begin 
+						display_1 = ~(7'b1111110); 
+						display_2 = ~(7'b1011011); 
+					end
+			six: begin 
+					  display_1 = ~(7'b1111110); 
+					  display_2 = ~(7'b0011111); 
+				  end
+			seven: begin 
+						 display_1 = ~(7'b1111110); 
+						 display_2 = ~(7'b1110000); 
+					 end
+			eight: begin 
+						 display_1 = ~(7'b1111110); 
+						 display_2 = ~(7'b1111111); 
+					 end
+			nine: begin 
+					   display_1 = ~(7'b1111110); 
+						display_2 = ~(7'b1110011); 
+					end
+			U_umlaut: begin 
+					 display_1 = ~(7'b0011100); 
+					 display_2 = ~(7'b0111110); 
+				 end
+			O_umlaut: begin 
+							 display_1 = ~(7'b0011100); 
+						    display_2 = ~(7'b1111110); 
+						 end
+			CH: begin 
+					 display_1 = ~(7'b1001110); 
+					 display_2 = ~(7'b0110111); 
+				 end
+			default: begin
+							display_1 = 7'bxxxxxxx; 
+							display_2 = 7'bxxxxxxx; 
+						end
+		endcase	
+	D_FF M0(ps[0], ns[0], reset, clk);
+	D_FF M1(ps[1], ns[1], reset, clk);
+	D_FF M2(ps[2], ns[2], reset, clk);
+	D_FF M3(ps[3], ns[3], reset, clk);
+	D_FF M4(ps[4], ns[4], reset, clk);
+	D_FF M5(ps[5], ns[5], reset, clk);
+endmodule

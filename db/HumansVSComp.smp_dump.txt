@@ -1,0 +1,34 @@
+
+State Machine - |DE1_SoC|rightMost:rightmost|PS
+Name PS~3 PS~2 
+PS.off 0 0 
+PS.on 0 1 
+PS.win 1 0 
+
+State Machine - |DE1_SoC|leftMost:leftmost|PS
+Name PS~3 PS~2 
+PS.off 0 0 
+PS.on 0 1 
+PS.win 1 0 
+
+State Machine - |DE1_SoC|victory:human|PS
+Name PS~4 PS~3 PS~2 
+PS.O 0 0 0 
+PS.ONE 0 0 1 
+PS.TWO 0 1 0 
+PS.THREE 0 1 1 
+PS.FOUR 1 0 0 
+PS.FIVE 1 0 1 
+PS.SIX 1 1 0 
+PS.SEVEN 1 1 1 
+
+State Machine - |DE1_SoC|victory:computer|PS
+Name PS~4 PS~3 PS~2 
+PS.O 0 0 0 
+PS.ONE 0 0 1 
+PS.TWO 0 1 0 
+PS.THREE 0 1 1 
+PS.FOUR 1 0 0 
+PS.FIVE 1 0 1 
+PS.SIX 1 1 0 
+PS.SEVEN 1 1 1 

@@ -1,0 +1,6 @@
+module adder (A, B, C, D, E);
+input A,B,C;
+output S,D;
+assign D = ( A & B ) |  ( C & ( A | B ) );
+assign E = (A^B)^C;
+endmodule

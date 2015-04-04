@@ -1,0 +1,18 @@
+module userInput (Clock, Reset, inButton, outButton); 
+ input Clock, Reset, inButton;
+ output reg outButton;
+ wire PS;
+ reg NS;
+ 
+  parameter [0:0] on = 1'b0, off = 1'b1;
+ 
+	
+// DFF
+ always @(posedge Clock) 
+	if (Reset) 
+		PS <= on; 
+	else 
+		PS <= NS;
+		
+	
+endmodule 
